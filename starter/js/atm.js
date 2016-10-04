@@ -1,5 +1,31 @@
-//Begin with the document ready function
 
+//Begin with the document ready function
+$(document).ready(function() {
+  console.log('ATM');
+  $('#depositChecking').on('click', depositCash)
+  $('#depositSavings').on('click', depositSave)
+});
+
+
+  function depositCash(e) {
+    e.preventDefault;
+    console.log('checked');
+
+    var cash = $('#amountChecking').val()
+
+    $('#checkingBalance').html('$' + cash).val(cash)
+
+  }
+
+  function depositSave(e) {
+    e.preventDefault;
+    console.log('checked');
+
+    var check = $('#amountSavings').val()
+
+    $('#savingsBalance').html('$' + check).val(check)
+
+  }
     //Checking account deposit function
 
       //On click of the depositChecking button
