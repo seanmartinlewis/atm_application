@@ -6,22 +6,22 @@ $(document).ready(function() {
   $('#depositSavings').on('click', depositSave)
 });
 
-
   function depositCash(e) {
     e.preventDefault;
     console.log('checked');
 
-    var cash = $('#amountChecking').val()
-
-    $('#checkingBalance').html('$' + cash).val(cash)
-
+    var depositCash = parseInt($('#amountChecking').val())
+    var previousBalance = parseInt($('#checkingBalance').text().replace('$',""))
+    var masterBalance = "$" + (depositCash + previousBalance)
+    $("#checkingBalance").text(masterBalance)
   }
+
 
   function depositSave(e) {
     e.preventDefault;
     console.log('checked');
 
-    var check = $('#amountSavings').val()
+    var check = $('#amountSavings').val() + $('#savingsBalance').val()
 
     $('#savingsBalance').html('$' + check).val(check)
 
