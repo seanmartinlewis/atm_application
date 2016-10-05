@@ -1,19 +1,36 @@
 
-//Begin with the document ready function
+// MY TAKE ON THE GA ATM .  SEANMARTINLEWIS
 $(document).ready(function() {
   console.log('ATM');
   $('#depositChecking').on('click', depositCash)
+  $('#withdrawChecking').on('click', withdrawCash)
   $('#depositSavings').on('click', depositSave)
 });
 
   function depositCash(e) {
-    e.preventDefault;
+    e.preventDefault();
     console.log('checked');
 
     var depositCash = parseInt($('#amountChecking').val())
     var previousBalance = parseInt($('#checkingBalance').text().replace('$',""))
     var masterBalance = "$" + (depositCash + previousBalance)
     $("#checkingBalance").text(masterBalance)
+  }
+
+  function withdrawCash(e) {
+    e.preventDefault();
+    console.log('withdrew');
+
+    var withdrawFunds = parseInt($('#amountChecking').val())
+    var previousBalance = parseInt($('#checkingBalance').text().replace('$',""))
+    var masterBalance = "$" + (previousBalance - withdrawFunds)
+
+    if (withdrawFunds <= previousBalance) {
+      console.log('new balance');
+      $("#checkingBalance").text(masterBalance)
+    } else {
+      alert('not enough cheddar')
+    }
   }
 
 
