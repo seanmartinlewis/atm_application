@@ -5,6 +5,7 @@ $(document).ready(function() {
   $('#depositChecking').on('click', depositCash)
   $('#withdrawChecking').on('click', withdrawCash)
   $('#depositSavings').on('click', depositSave)
+  $('#withdrawSavings').on('click', withdrawSave)
 });
 
   function depositCash(e) {
@@ -35,51 +36,30 @@ $(document).ready(function() {
 
 
   function depositSave(e) {
-    e.preventDefault;
+    e.preventDefault();
     console.log('checked');
 
-    var check = $('#amountSavings').val() + $('#savingsBalance').val()
-
-    $('#savingsBalance').html('$' + check).val(check)
-
+    var depositCash = parseInt($('#amountSavings').val())
+    var previousBalance = parseInt($('#savingsBalance').text().replace('$',""))
+    var masterBalance = "$" + (depositCash + previousBalance)
+    $("#savingsBalance").text(masterBalance)
   }
-    //Checking account deposit function
 
-      //On click of the depositChecking button
+  function withdrawSave(e) {
+    e.preventDefault();
+    console.log('withdrew');
 
-        //Get value from the amountChecking input field
+    var withdrawFunds = parseInt($('#amountSavings').val())
+    var previousBalance = parseInt($('#savingsBalance').text().replace('$',""))
+    var masterBalance = "$" + (previousBalance - withdrawFunds)
 
-        //Take that value and add it to the existing value in the checkingBalance div
-
-    //Checking account withdrawl funtion
-
-      //On click of the withdrawChecking button
-
-        //Get value from the amountChecking input field
-
-        // If that value is greater than the value in the account ignore that action
-        // In other words if this would put the account into a negative balance do not allow it
-
-        //Else subtract that value from the current amount in the checking account
-
-    //Savings account deposit function
-
-      //On click of the depositSavings button
-
-        //Get value from the amountSavings input field
-
-        //Take that value and add it to the existing value in the savingsBalance div
-
-    //Savings account withdraw funtion
-
-      //On click of the withdrawl button
-
-        //Get value from the amountSavings input field
-
-         //If that value is greater than the value in the account ignore that action
-         //In other words if this would put the account into a negative balance do not allow it
-
-         //Else subtract that value from the current amount in the savings account
+    if (withdrawFunds <= previousBalance) {
+      console.log('new balance');
+      $("#savingsBalance").text(masterBalance)
+    } else {
+      alert('not enough cheddar')
+    }
+  }
 
 // Bonus-- get the two accounts to work with each other and allow for overdraft protection
 
